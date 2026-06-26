@@ -2,51 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@400;500;700;800&display=swap');
 
-:root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 4%;
-    --surface: 220 14% 97%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
-    --primary: 221 83% 53%;
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 35%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 0 0% 9%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 5% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 16%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221 83% 53%;
-    --radius: 0.125rem;
+    --border: 240 5% 16%;
+    --input: 240 5% 16%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+  }
 }
 
-* {
+@layer base {
+  * {
     @apply border-border;
-}
-
-body {
+  }
+  body {
     @apply bg-background text-foreground;
-    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-    font-feature-settings: \"ss01\", \"cv05\";
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #09090b;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 .font-display {
-    font-family: 'Cabinet Grotesk', 'IBM Plex Sans', sans-serif;
+    font-family: 'Outfit', sans-serif;
     letter-spacing: -0.02em;
 }
 
 .font-mono {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .kicker {
@@ -55,33 +60,40 @@ body {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: hsl(var(--muted-foreground));
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.divider-h {
-    height: 1px;
-    background: hsl(var(--border));
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-.grid-cell {
-    border: 1px solid hsl(var(--border));
+.glass-card {
+    background: rgba(39, 39, 42, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.scanline-bg {
-    background-image:
-        linear-gradient(180deg, transparent 0, transparent 49%, rgba(37, 99, 235, 0.08) 50%, transparent 51%, transparent 100%);
-    background-size: 100% 4px;
-}
-
-.dotgrid {
-    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.06) 1px, transparent 0);
-    background-size: 18px 18px;
+.glass-card:hover {
+    background: rgba(63, 63, 70, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
 }
 
 .viewer-frame {
-    background:
-        linear-gradient(135deg, #0a0a0a 0%, #111114 100%);
+    background: #000;
     position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .viewer-frame::before {
@@ -89,9 +101,9 @@ body {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
-    background-size: 16px 16px;
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
     pointer-events: none;
 }
 
@@ -101,61 +113,62 @@ body {
 
 @keyframes flicker {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.92; }
+    50% { opacity: 0.85; }
 }
 
 .pulse-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    animation: pulse 1.6s infinite;
+    animation: pulseGlow 2s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 currentcolor; }
+    50% { transform: scale(1.2); box-shadow: 0 0 10px 2px currentcolor; }
 }
 
 .fade-up {
-    animation: fadeUp 0.45s ease-out both;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.shimmer {
-    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), transparent);
-    background-size: 200% 100%;
-    animation: shimmer 1.6s infinite;
-}
-
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
+/* Premium Buttons */
 .btn-primary {
-    @apply inline-flex items-center justify-center bg-zinc-900 text-white px-5 py-3 text-sm font-medium tracking-tight border border-zinc-900 transition-colors;
+    @apply inline-flex items-center justify-center bg-white text-black px-6 py-3 text-sm font-semibold tracking-tight rounded-full transition-all duration-300;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 .btn-primary:hover {
-    @apply bg-blue-600 border-blue-600;
+    @apply bg-zinc-200 transform -translate-y-0.5;
+    box-shadow: 0 4px 25px rgba(255, 255, 255, 0.2);
 }
 
 .btn-ghost {
-    @apply inline-flex items-center justify-center bg-white text-zinc-900 px-5 py-3 text-sm font-medium tracking-tight border border-zinc-200 transition-colors;
+    @apply inline-flex items-center justify-center bg-white/5 text-white px-6 py-3 text-sm font-medium tracking-tight rounded-full border border-white/10 transition-all duration-300 backdrop-blur-md;
 }
 .btn-ghost:hover {
-    @apply bg-zinc-900 text-white border-zinc-900;
+    @apply bg-white/10 border-white/20 transform -translate-y-0.5;
 }
 
-.cls-Tumor   { color: #DC2626; border-color: #DC2626; }
-.cls-MS      { color: #D97706; border-color: #D97706; }
-.cls-Injury  { color: #2563EB; border-color: #2563EB; }
-.cls-Normal  { color: #16A34A; border-color: #16A34A; }
+/* Glowing Accent Colors for Classes */
+.cls-Tumor   { color: #ff4b4b; text-shadow: 0 0 10px rgba(255, 75, 75, 0.5); border-color: rgba(255, 75, 75, 0.3); }
+.cls-MS      { color: #ffb84d; text-shadow: 0 0 10px rgba(255, 184, 77, 0.5); border-color: rgba(255, 184, 77, 0.3); }
+.cls-Injury  { color: #4d94ff; text-shadow: 0 0 10px rgba(77, 148, 255, 0.5); border-color: rgba(77, 148, 255, 0.3); }
+.cls-Normal  { color: #4dff88; text-shadow: 0 0 10px rgba(77, 255, 136, 0.5); border-color: rgba(77, 255, 136, 0.3); }
 
-.bg-cls-Tumor   { background-color: #DC2626; color: white; }
-.bg-cls-MS      { background-color: #D97706; color: white; }
-.bg-cls-Injury  { background-color: #2563EB; color: white; }
-.bg-cls-Normal  { background-color: #16A34A; color: white; }
+.bg-cls-Tumor   { background-color: rgba(255, 75, 75, 0.15); color: #ff4b4b; border: 1px solid rgba(255, 75, 75, 0.3); }
+.bg-cls-MS      { background-color: rgba(255, 184, 77, 0.15); color: #ffb84d; border: 1px solid rgba(255, 184, 77, 0.3); }
+.bg-cls-Injury  { background-color: rgba(77, 148, 255, 0.15); color: #4d94ff; border: 1px solid rgba(77, 148, 255, 0.3); }
+.bg-cls-Normal  { background-color: rgba(77, 255, 136, 0.15); color: #4dff88; border: 1px solid rgba(77, 255, 136, 0.3); }
+
+/* Progress Bars */
+.progress-track {
+    @apply w-full h-2 rounded-full bg-white/10 overflow-hidden;
+}
+.progress-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+}

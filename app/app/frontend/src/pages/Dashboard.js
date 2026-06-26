@@ -97,26 +97,28 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-white text-zinc-900" data-testid="dashboard-root">
+    return (
+        <div className="min-h-screen bg-transparent relative overflow-hidden" data-testid="dashboard-root">
+            <div className="absolute inset-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
             <Header />
 
             {/* Hero / intro */}
-            <section className="border-b border-zinc-200">
+            <section className="border-b border-white/5 relative z-10 fade-up">
                 <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 grid grid-cols-12 gap-6">
                     <div className="col-span-12 lg:col-span-8">
-                        <div className="kicker mb-4" data-testid="hero-kicker">SYS-01 / SPINAL CORD MRI · NEURAL DIAGNOSTIC PIPELINE</div>
+                        <div className="kicker mb-4 text-blue-400" data-testid="hero-kicker">SYS-01 / SPINAL CORD MRI · NEURAL DIAGNOSTIC PIPELINE</div>
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[0.95] tracking-tight">
                             Automatic Segmentation &<br />
                             Disease Localization for<br />
-                            <span className="text-blue-600">Spinal Cord MRI.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Spinal Cord MRI.</span>
                         </h1>
-                        <p className="mt-6 max-w-xl text-zinc-600 text-base leading-relaxed">
+                        <p className="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed">
                             Upload an MRI slice (PNG/JPG). The pipeline segments the spinal cord with a U-Net,
                             localizes anomalous regions and classifies the slice into one of four diagnostic
                             classes — Tumor, MS, Injury, or Normal — alongside the model's confidence score.
                         </p>
                     </div>
-                    <div className="col-span-12 lg:col-span-4 grid grid-cols-2 gap-px bg-zinc-200 border border-zinc-200">
+                    <div className="col-span-12 lg:col-span-4 grid grid-cols-2 gap-px bg-white/5 border border-white/10 rounded-xl overflow-hidden glass-panel">
                         <Stat label="Classes" value="04" data-testid="stat-classes" />
                         <Stat label="Architecture" value="U-Net" data-testid="stat-arch" />
                         <Stat label="Image Size" value="256" suffix="px" data-testid="stat-size" />
@@ -125,22 +127,22 @@ export default function Dashboard() {
                 </div>
             </section>
 
-            <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 grid grid-cols-12 gap-6">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 grid grid-cols-12 gap-8 relative z-10">
                 {/* LEFT — upload & classification */}
                 <div className="col-span-12 lg:col-span-4 space-y-6">
                     <UploadZone onFile={handleFile} loading={loading} />
 
                     {uploadError && (
                         <div
-                            className="border border-red-300 bg-red-50 p-4 rounded-md"
+                            className="glass-card p-4 rounded-xl border border-red-500/30 bg-red-500/10"
                             data-testid="non-mri-error-banner"
                             role="alert"
                         >
-                            <div className="kicker text-red-700">NOT AN MRI</div>
-                            <div className="mt-2 text-sm text-red-800 leading-relaxed">
+                            <div className="kicker text-red-400">NOT AN MRI</div>
+                            <div className="mt-2 text-sm text-red-200 leading-relaxed">
                                 {uploadError}
                             </div>
-                            <div className="mt-2 text-xs text-red-700/80">
+                            <div className="mt-3 text-xs text-red-300/80">
                                 Please upload a valid spinal-cord MRI slice (grayscale, dark background, PNG/JPG).
                             </div>
                         </div>
@@ -172,7 +174,7 @@ export default function Dashboard() {
                 onDelete={handleDelete}
             />
 
-            <footer className="border-t border-zinc-200 mt-10">
+            <footer className="border-t border-white/10 mt-10 relative z-10">
                 <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                     <div className="kicker">© 2026 NEURAL CORD · DIAGNOSTIC RESEARCH BUILD</div>
                     <div className="text-xs text-zinc-500 max-w-md text-right">
@@ -185,9 +187,9 @@ export default function Dashboard() {
 }
 
 const Stat = ({ label, value, suffix, "data-testid": tid }) => (
-    <div className="bg-white p-5" data-testid={tid}>
-        <div className="kicker">{label}</div>
-        <div className="font-display text-3xl font-bold mt-2 leading-none">
+    <div className="bg-black/40 p-6 flex flex-col justify-center backdrop-blur-md transition-all duration-300 hover:bg-white/5" data-testid={tid}>
+        <div className="kicker text-zinc-400">{label}</div>
+        <div className="font-display text-4xl font-bold mt-3 leading-none text-white tracking-tight">
             {value}
             {suffix && <span className="text-zinc-400 text-base ml-1 font-mono">{suffix}</span>}
         </div>
