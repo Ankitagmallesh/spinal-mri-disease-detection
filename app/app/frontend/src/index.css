@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap');
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+    --surface: 220 14% 97%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 35%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.125rem;
+}
+
+* {
+    @apply border-border;
+}
+
+body {
+    @apply bg-background text-foreground;
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-feature-settings: \"ss01\", \"cv05\";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+    font-family: 'Cabinet Grotesk', 'IBM Plex Sans', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.font-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    font-weight: 500;
+}
+
+.divider-h {
+    height: 1px;
+    background: hsl(var(--border));
+}
+
+.grid-cell {
+    border: 1px solid hsl(var(--border));
+}
+
+.scanline-bg {
+    background-image:
+        linear-gradient(180deg, transparent 0, transparent 49%, rgba(37, 99, 235, 0.08) 50%, transparent 51%, transparent 100%);
+    background-size: 100% 4px;
+}
+
+.dotgrid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.06) 1px, transparent 0);
+    background-size: 18px 18px;
+}
+
+.viewer-frame {
+    background:
+        linear-gradient(135deg, #0a0a0a 0%, #111114 100%);
+    position: relative;
+}
+
+.viewer-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+    pointer-events: none;
+}
+
+.flicker {
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.92; }
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.fade-up {
+    animation: fadeUp 0.45s ease-out both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.btn-primary {
+    @apply inline-flex items-center justify-center bg-zinc-900 text-white px-5 py-3 text-sm font-medium tracking-tight border border-zinc-900 transition-colors;
+}
+.btn-primary:hover {
+    @apply bg-blue-600 border-blue-600;
+}
+
+.btn-ghost {
+    @apply inline-flex items-center justify-center bg-white text-zinc-900 px-5 py-3 text-sm font-medium tracking-tight border border-zinc-200 transition-colors;
+}
+.btn-ghost:hover {
+    @apply bg-zinc-900 text-white border-zinc-900;
+}
+
+.cls-Tumor   { color: #DC2626; border-color: #DC2626; }
+.cls-MS      { color: #D97706; border-color: #D97706; }
+.cls-Injury  { color: #2563EB; border-color: #2563EB; }
+.cls-Normal  { color: #16A34A; border-color: #16A34A; }
+
+.bg-cls-Tumor   { background-color: #DC2626; color: white; }
+.bg-cls-MS      { background-color: #D97706; color: white; }
+.bg-cls-Injury  { background-color: #2563EB; color: white; }
+.bg-cls-Normal  { background-color: #16A34A; color: white; }

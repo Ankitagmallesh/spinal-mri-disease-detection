@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta
+      name="description"
+      content="NeuralCord - Spinal Cord MRI Diagnostic Pipeline"
+    />
+
+    <title>NeuralCord · MRI Diagnostic Pipeline</title>
+
+    <!-- Inter + JetBrains Mono (matches your UI style) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind (for quick styling like your UI) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              primary: "#2563eb",
+              accent: "#0f172a",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+        background: #fafafa;
+        font-family: "Inter", sans-serif;
+      }
+
+      .kicker {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #71717a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Root where React mounts -->
+    <div id="root"></div>
+
+    <!-- Optional: fallback skeleton UI (shown before React loads) -->
+    <div id="fallback" class="p-10 text-center text-zinc-400 text-sm">
+      Loading NeuralCord MRI Diagnostic Interface...
+    </div>
+
+    <script>
+      // Hide fallback once React loads
+      window.addEventListener("DOMContentLoaded", () => {
+        const observer = new MutationObserver(() => {
+          const root = document.getElementById("root");
+          if (root && root.children.length > 0) {
+            document.getElementById("fallback").style.display = "none";
+          }
+        });
+
+        observer.observe(document.getElementById("root"), {
+          childList: true,
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+{
+  "theme": "Light",
+  "archetype": "Archetype 4: Swiss & High-Contrast",
+  "design_philosophy": "Objective, rigid, and functional. Designed as a clinical command center for MRI diagnostics. Emphasizes data clarity, trust, and diagnostic accuracy. High contrast interface.",
+  "colors": {
+    "background": "#FFFFFF",
+    "surface": "#F8FAFC",
+    "text_primary": "#0A0A0A",
+    "text_secondary": "#52525B",
+    "primary_accent": "#2563EB",
+    "secondary_accent": "#09090B",
+    "warning_alert": "#EF4444",
+    "success_alert": "#22C55E",
+    "border": "#E4E4E7",
+    "diagnostic_classes": {
+      "Tumor": "#EF4444",
+      "MS": "#F59E0B",
+      "Injury": "#3B82F6",
+      "Normal": "#22C55E"
+    }
+  },
+  "typography": {
+    "headings": "Cabinet Grotesk",
+    "body": "IBM Plex Sans",
+    "weights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "bold": 700
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl tracking-tight font-bold",
+      "h2": "text-2xl sm:text-3xl tracking-tight font-semibold",
+      "h3": "text-xl sm:text-2xl tracking-tight font-medium",
+      "h4": "text-lg sm:text-xl tracking-tight font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-xs uppercase tracking-[0.2em]"
+    }
+  },
+  "layout_spacing": {
+    "grid_mode": "Control Room Grid",
+    "spacing_scale": "Tailwind standard, using tight spacing gap-4 or gap-6 for dashboards.",
+    "container_style": "Grid Borders - border-collapse style layout. 1px solid borders border-border, no soft shadows.",
+    "surface_styles": {
+      "dashboard_cards": "Flat background (bg-white), 1px border-border, no shadow, sharp corners (rounded-none or max rounded-sm).",
+      "header": "Solid white background with a hard 1px bottom border."
+    }
+  },
+  "motion_interactions": {
+    "hover_states": "Explicit hover states. hover:bg-slate-900 hover:text-white for buttons.",
+    "focus_states": "High contrast ring. focus:ring-2 focus:ring-blue-600",
+    "animations": "Minimalist micro-interactions. Only use for feedback."
+  },
+  "icons_assets": {
+    "icon_library": "lucide-react",
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1758691463110-697a814b2033?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxNUkklMjBzY2FuJTIwcmFkaW9sb2d5fGVufDB8fHx8MTc3NzYzNzM5N3ww&ixlib=rb-4.1.0&q=85",
+        "category": "placeholder_mri",
+        "description": "Doctor examining MRI, use for empty state or hero."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1758691463165-ca9b5bc2b28a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHxNUkklMjBzY2FuJTIwcmFkaW9sb2d5fGVufDB8fHx8MTc3NzYzNzM5N3ww&ixlib=rb-4.1.0&q=85",
+        "category": "placeholder_mri_alt",
+        "description": "Man talking to doctor with MRI on laptop."
+      }
+    ]
+  },
+  "components": {
+    "file_upload": "Drag and drop zone. dashed border-2 border-border, hover:border-primary bg-surface/50 p-12 text-center",
+    "prediction_viewer": "2x2 grid layout. Original MRI, Segmented Cord, Binary Mask, Disease Overlay. Use aspect-square containers with bg-black for high contrast viewing of medical images.",
+    "classification_result": "Large typography for label. Use diagnostic_classes colors for indicators. Show confidence score prominently.",
+    "history_panel": "Dense table layout. Use Shadcn Table. No card borders around the table, let it sit in the grid.",
+    "metrics_view": "Simple rectangular bars for Dice Score and IoU."
+  },
+  "testing": {
+    "requirements": "All interactive elements MUST include data-testid. e.g., data-testid='upload-mri-zone'."
+  },
+  "instructions_to_main_agent": [
+    "The application is a medical AI dashboard. Use Archetype 4 (Swiss & High Contrast).",
+    "Layout should be dense, data-driven, and utilize 1px borders everywhere. Avoid soft shadows.",
+    "Use pure HTML/Tailwind for structural dashboard layouts, do not rely on generic Cards.",
+    "Ensure the layout can accommodate four simultaneous MRI views (Original, Segmented, Mask, Overlay).",
+    "Use the provided image URLs as fallbacks or empty-state visuals if needed. Never use via.placeholder.com.",
+    "Write components in .js or .jsx as configured in the frontend.",
+    "Ensure typography strictly follows the guidelines and adds a professional medical feel."
+  ]
+}
+
