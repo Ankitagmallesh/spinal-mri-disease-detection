@@ -97,7 +97,6 @@ export default function Dashboard() {
     };
 
     return (
-    return (
         <div className="min-h-screen bg-transparent relative overflow-hidden" data-testid="dashboard-root">
             <div className="absolute inset-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
             <Header />
